@@ -34,6 +34,7 @@ class PersonalData:
     birthdate: dt.date
     weight: float
     height: float
+    bmi: float
 
 
 # Interface for data operations
@@ -64,7 +65,8 @@ class PolarsDFOperation(DataFrameOperations):
                         isinstance(person.name, str),
                         isinstance(person.birthdate, dt.date),
                         isinstance(person.weight, (int, float)),
-                        isinstance(person.height, float)
+                        isinstance(person.height, float),
+                        isinstance(person.bmi, float)
                     ]
                 ):
                     return False
@@ -82,7 +84,8 @@ class PolarsDFOperation(DataFrameOperations):
                 "name": [person.name for person in data],
                 "birthdate": [person.birthdate for person in data],
                 "weight": [person.weight for person in data],
-                "height": [person.height for person in data]
+                "height": [person.height for person in data],
+                "bmi": [person.bmi for person in data]
             }
             return pl.DataFrame(df_dict)
         except Exception as e:
@@ -106,10 +109,10 @@ class DataFactory:
     @staticmethod
     def create_data() -> List[PersonalData]:
         return [
-            PersonalData("VR", dt.date(1986, 1, 1), 75.0, 166.0),
-            PersonalData("RP", dt.date(1991, 1, 1), 65.5, 166.0),
-            PersonalData("KR", dt.date(1986, 1, 1), 15.5, 110.0),
-            PersonalData("SSR", dt.date(1986, 1, 1), 13.5, 100.0),
+            PersonalData("VR", dt.date(1986, 1, 1), 75.0, 166.0, 0.0),
+            PersonalData("RP", dt.date(1991, 1, 1), 65.5, 166.0, 0.0),
+            PersonalData("KR", dt.date(2019, 1, 1), 15.5, 110.0, 0.0),
+            PersonalData("SSR", dt.date(2022, 1, 1), 13.5, 100.0, 0.0),
         ]
 
 
